@@ -44,12 +44,12 @@ cd my-academic-site
 
 2. **Add the theme as a Git submodule**
 ```bash
-git submodule add https://github.com/yiming-m/scholar-lite.git themes/scholar-lite
+git submodule add https://github.com/yiming-m/Scholar-Lite.git themes/Scholar-Lite
 ```
 
 1. **Configure the site**
 ```bash
-cp themes/scholar-lite/exampleSite/hugo.toml .
+cp themes/Scholar-Lite/exampleSite/hugo.toml .
 ```
 
 1. **Start the development server**
@@ -63,12 +63,12 @@ Visit `http://localhost:1313` to view your website.
 
 #### Method 1: Git Clone (for development)
 ```bash
-git clone https://github.com/yiming-m/scholar-lite.git themes/scholar-lite
+git clone https://github.com/yiming-m/Scholar-Lite.git themes/Scholar-Lite
 ```
 
 #### Method 2: Download ZIP
 1. Download the ZIP file from GitHub
-2. Extract it to `themes/scholar-lite/`
+2. Extract it to `themes/Scholar-Lite/`
 3. Configure your site as above
 
 #### Method 3: Hugo Modules (advanced)
@@ -76,7 +76,7 @@ git clone https://github.com/yiming-m/scholar-lite.git themes/scholar-lite
 # In your site's hugo.toml
 [module]
   [[module.imports]]
-    path = "github.com/yourusername/scholar-lite"
+    path = "github.com/yourusername/Scholar-Lite"
 ```
 
 ## ⚙️ Configuration
@@ -89,7 +89,7 @@ Edit the `hugo.toml` file, remove unnecessary social media:
 baseURL = "https://yourdomain.com"
 languageCode = "en-us"
 title = "Your Name - Academic Portfolio"
-theme = "scholar-lite"
+theme = "Scholar-Lite"
 
 [params]
   bio = """
@@ -152,7 +152,7 @@ Modify CSS variables in `assets/css/main.css`:
 ## 📁 Project Structure
 
 ```
-themes/scholar-lite/
+themes/Scholar-Lite/
 ├── assets/                 # CSS, JS, and other assets
 │   ├── css/               # Stylesheets
 │   └── js/                # JavaScript files

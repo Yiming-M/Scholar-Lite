@@ -1,7 +1,7 @@
 baseURL = "https://www.jane.doe/"
 languageCode = "en-us"
 title = "Jane's Portfolio"
-theme = "scholar-lite"
+theme = "Scholar-Lite"
 
 [markup]
   [markup.goldmark]
