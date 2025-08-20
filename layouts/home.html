@@ -1,0 +1,55 @@
+{{ define "main" }}
+  <!-- DEBUG: Using scholar-lite home.html -->
+  <div class="posts-container">
+    <h1 class="main-title">Publications</h1>
+    <div class="posts-section">
+      {{ $index := 0 }}
+      {{ range site.RegularPages }}
+        {{ $index = add $index 1 }}
+        <article class="post-card" data-post-id="{{ $index }}">
+          <div class="post-header" data-post-id="{{ $index }}">
+            <h2>{{ .LinkTitle }}</h2>
+            <div class="post-meta">
+              <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+              {{ with .Params.venue }}
+                {{ if reflect.IsSlice . }}
+                  • <span class="tag tag-venue">{{ index . 0 }}</span>
+                {{ else }}
+                  • <span class="tag tag-venue">{{ . }}</span>
+                {{ end }}
+              {{ end }}
+            </div>
+            {{ if and (.Params.keywords) (gt (len .Params.keywords) 0) }}
+              <div class="post-keywords">
+                  {{ range .Params.keywords }}
+                    {{ if in . "/" }}
+                      {{ $parts := split . "/" }}
+                      <span class="tag-group">
+                        <span class="tag tag-keyword tag-level-1">{{ index $parts 0 }}</span>
+                        {{ if gt (len $parts) 1 }}
+                          <span class="tag-separator">/</span>
+                          <span class="tag tag-keyword tag-level-2">{{ index $parts 1 }}</span>
+                        {{ end }}
+                        {{ if gt (len $parts) 2 }}
+                          <span class="tag-separator">/</span>
+                          <span class="tag tag-keyword tag-level-3">{{ index $parts 2 }}</span>
+                        {{ end }}
+                      </span>
+                    {{ else }}
+                      <span class="tag tag-keyword">{{ . }}</span>
+                    {{ end }}
+                  {{ end }}
+                </div>
+              {{ end }}
+            </div>
+          
+          <div class="post-content" id="content-{{ $index }}" style="display: none;">
+            <div class="post-full-content">
+              {{ .Content }}
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

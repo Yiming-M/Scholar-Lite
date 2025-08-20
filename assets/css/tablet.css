@@ -1,0 +1,549 @@
+/* 平板端样式 - 适用于1024px以下，769px以上的设备 */
+@media (max-width: 1024px) and (min-width: 769px) {
+  /* 保持三栏布局，但左侧栏可折叠 */
+  .container {
+    grid-template-columns: 0px 1fr 220px;
+    padding: 10px 10px 10px 0px;
+    gap: 10px;
+    transition: grid-template-columns 0.3s ease;
+  }
+
+  .toggle-icon {
+    margin-right: 0.25rem;
+  }
+
+  /* 平板模式下post中标签的样式调整 */
+  .post-meta .tag-venue,
+  .post-keywords .tag-keyword {
+    cursor: pointer !important;
+  }
+
+  .post-meta .tag-venue.tag-red:hover,
+  .post-keywords .tag-keyword.tag-red:hover {
+    background: var(--tag-red-bg);
+    color: var(--tag-red-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-green:hover,
+  .post-keywords .tag-keyword.tag-green:hover {
+    background: var(--tag-green-bg);
+    color: var(--tag-green-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-blue:hover,
+  .post-keywords .tag-keyword.tag-blue:hover {
+    background: var(--tag-blue-bg);
+    color: var(--tag-blue-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-yellow:hover,
+  .post-keywords .tag-keyword.tag-yellow:hover {
+    background: var(--tag-yellow-bg);
+    color: var(--tag-yellow-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-purple:hover,
+  .post-keywords .tag-keyword.tag-purple:hover {
+    background: var(--tag-purple-bg);
+    color: var(--tag-purple-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-orange:hover,
+  .post-keywords .tag-keyword.tag-orange:hover {
+    background: var(--tag-orange-bg);
+    color: var(--tag-orange-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-teal:hover,
+  .post-keywords .tag-keyword.tag-teal:hover {
+    background: var(--tag-teal-bg);
+    color: var(--tag-teal-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-pink:hover,
+  .post-keywords .tag-keyword.tag-pink:hover {
+    background: var(--tag-pink-bg);
+    color: var(--tag-pink-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-indigo:hover,
+  .post-keywords .tag-keyword.tag-indigo:hover {
+    background: var(--tag-indigo-bg);
+    color: var(--tag-indigo-color);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-cyan:hover,
+  .post-keywords .tag-keyword.tag-cyan:hover {
+    background: var(--tag-cyan-bg);
+    color: var(--tag-cyan-color);
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* 被取消选中后，强制清除悬停状态 */
+  .sidebar-right .tags-cloud .tag-venue:not(.tag-venue-active):hover,
+  .sidebar-right .tags-cloud .tag-keyword:not(.tag-keyword-active):hover {
+    background: var(--tag-bg) !important;
+    color: var(--tag-color) !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .sidebar-right .archive-year:not(.archive-year-active):hover {
+    background: transparent !important;
+    color: var(--text-color) !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .collapsible-header:not(.collapsible-header-active):hover{
+    color: var(--text-color) !important;
+  }
+
+  .post-card.centered .post-header h2:not(.post-card.centered .post-header h2):hover {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+  .post-card.centered .post-header h2:not(.post-card.centered .post-header h2):active {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+
+  /* 被取消选中后，强制清除高亮状态 */
+  .post-meta .tag-venue.tag-red:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-red:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-red-bg) !important;
+    border-color: var(--tag-red-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-green:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-green:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-green-bg) !important;
+    border-color: var(--tag-green-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-blue:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-blue:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-blue-bg) !important;
+    border-color: var(--tag-blue-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-yellow:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-yellow:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-yellow-bg) !important;
+    border-color: var(--tag-yellow-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-purple:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-purple:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-purple-bg) !important;
+    border-color: var(--tag-purple-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-orange:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-orange:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-orange-bg) !important;
+    border-color: var(--tag-orange-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-teal:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-teal:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-teal-bg) !important;
+    border-color: var(--tag-teal-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-pink:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-pink:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-pink-bg) !important;
+    border-color: var(--tag-pink-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-indigo:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-indigo:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-indigo-bg) !important;
+    border-color: var(--tag-indigo-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-meta .tag-venue.tag-cyan:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-cyan:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-cyan-bg) !important;
+    border-color: var(--tag-cyan-bg) !important;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* 平板模式下缩短post之间的间隔 */
+  .post-card {
+    margin-bottom: 0.75rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 0; /* 覆盖全局的padding */
+    border-bottom: none; /* 移除底部边框 */
+  }
+  
+  .post-card:first-child {
+    padding-top: 0.5rem; /* 第一个post的顶部padding更小 */
+    padding-bottom: 0rem;
+  }
+  
+  /* 平板模式下将大标题居中 */
+  .main-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* 左侧栏折叠状态 */
+  .sidebar-left {
+    position: fixed;
+    top: 0;
+    left: -400px; /* 默认隐藏 */
+    width: 280px;
+    height: calc(100dvh - 20px);
+    background: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 0rem 1.0rem 1.0rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  /* 左侧栏展开状态 */
+  .sidebar-left.active {
+    left: 0;
+  }
+  
+  /* 左侧栏内容样式调整 */
+  .sidebar-left .profile-section {
+    margin-bottom: 1.0rem;
+    padding-right: 1.0rem;
+    flex-shrink: 0;
+  }
+  
+  .sidebar-left .recent-news {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-top: 0.5rem;
+  }
+  
+  /* 左侧栏内的个人资料样式 */
+  .sidebar-left .profile-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-left .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 0.5rem;
+  }
+  
+  .sidebar-left .profile-header h1 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  
+  .sidebar-left .profile-bio {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.0rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* 左侧栏内的社交链接样式 - 4列圆形布局 */
+  .sidebar-left .social-links {
+    display: flex; /* 启用Flexbox布局 */
+    flex-wrap: wrap; /* 允许换行，当图标超过一行时自动换到下一行 */
+    justify-content: center; /* 核心：实现行内图标的水平居中对齐 */
+    align-items: center; /* 垂直对齐图标（如果高度不一） */
+    gap: 1rem; /* 设置图标之间的统一间距，比margin更现代 */
+    
+    /* 基础样式 */
+    padding: 0;
+    margin: 0 0 0rem 0; /* 只保留下外边距 */
+    list-style: none; /* 如果您使用<ul>作为容器，这会移除列表点 */
+    min-height: 3rem; /* 即使只有一个图标，也保持最小高度 */
+  }
+  
+  
+  .sidebar-left .social-link {
+    /* 移除旧的flex-basis和margin:auto，因为布局由父容器控制 */
+    /* flex: 0 0 calc(25% - 0.6rem); (移除) */
+    /* margin: 0 auto; (移除) */
+    
+    display: inline-flex; /* 使用inline-flex使其表现像一个内联元素，同时保持内部的flex特性 */
+    align-items: center; /* 垂直居中内部的SVG或文字 */
+    justify-content: center; /* 水平居中内部的SVG或文字 */
+  
+    /* 图标外观样式 (基本保持不变) */
+    width: 2.5rem; /* 稍微增大点击区域 */
+    height: 2.5rem;
+    background: var(--hover-bg);
+    border-radius: 50%;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-left .social-link:hover {
+    background: var(--border-color);
+    transform: translateY(-3px); /* 稍微增强悬停效果 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .sidebar-left .social-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .sidebar-left .social-link:empty{
+    display: none;
+  }
+
+  /* 左侧栏内的新闻样式 */
+  .sidebar-left .recent-news h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .sidebar-left .news-item {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* 主内容区域调整 - 占据左侧栏空间 */
+  .content-main {
+    position: static;
+    display: flex !important;
+    flex-direction: column;
+    overflow-y: auto;
+    height: calc(100dvh - 20px);
+    grid-column: 2;
+  }
+  
+  /* 右侧栏调整 - 确保显示在右边 */
+  .sidebar-right {
+    position: static;
+    display: flex !important;
+    flex-direction: column;
+    overflow-y: auto;
+    height: calc(100dvh - 20px);
+    grid-column: 3;
+  }
+  
+  /* 左侧栏展开按钮 */
+  .sidebar-toggle {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 1001;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  [data-theme="dark"] .sidebar-toggle:hover {
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+  }
+  
+  /* 左侧栏遮罩层 */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .tag {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.3rem;
+    border-radius: 6px;
+  }
+  
+  .post-card {
+    margin-bottom: 1rem;
+  }
+  
+  .post-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .search-box input {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  
+  .sidebar-right h3 {
+    font-size: 0.9rem;
+  }
+  
+  .archive-year {
+    font-size: 0.85rem;
+  }
+  
+  .tags-cloud .tag {
+    background: var(--tag-bg);
+    color: var(--tag-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    /* 添加透明边框，避免活跃状态时布局跳动 */
+    border: 2px solid transparent;
+    /* 使用伪粗体避免宽度变化 */
+    font-synthesis: weight;
+    /* 或者使用固定宽度来避免变化 */
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+
+  /* 搜索切换按钮隐藏 */
+  .search-toggle {
+    display: none;
+  }
+  
+  /* 清除过滤器按钮调整 */
+  .clear-filters-btn {
+    width: 45px;
+    height: 45px;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+  }
+  
+  .clear-filters-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  [data-theme="dark"] .clear-filters-btn:hover {
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+  }
+  
+  /* 确保滚动条样式在平板端也适用 */
+  .sidebar-left::-webkit-scrollbar,
+  .content-main::-webkit-scrollbar,
+  .sidebar-right::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .sidebar-left::-webkit-scrollbar-track,
+  .content-main::-webkit-scrollbar-track,
+  .sidebar-right::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+  
+  .sidebar-left::-webkit-scrollbar-thumb,
+  .content-main::-webkit-scrollbar-thumb,
+  .sidebar-right::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 3px;
+  }
+  
+  .sidebar-left::-webkit-scrollbar-thumb:hover,
+  .content-main::-webkit-scrollbar-thumb:hover,
+  .sidebar-right::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+  }
+  
+  /* 确保内容区域能够正确滚动 */
+  .posts-section {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem; /* 进一步减少底部padding */
+    height: auto;
+    overflow-y: auto; /* 如果内容过多，允许滚动 */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 确保左侧栏内容能够正确显示 */
+  .profile-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .recent-news {
+    flex: 1;
+    overflow-y: auto;
+  }
+}

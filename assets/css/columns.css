@@ -1,0 +1,307 @@
+/* ===== 多列布局系统 ===== */
+/* 用法：在 markdown 中使用 HTML div 标签创建多列布局
+   
+   示例：
+   <div class="columns-2">
+     <div class="column">第一列内容</div>
+     <div class="column">第二列内容</div>
+   </div>
+   
+   或者使用简化版本：
+   <div class="columns-2">
+     第一列内容
+     :::
+     第二列内容
+   </div>
+*/
+
+/* 基础容器样式 */
+.columns-container {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* 基础列样式 */
+.column {
+  flex: 1;
+  min-width: 0; /* 允许列收缩 */
+  box-sizing: border-box;
+}
+
+/* 2列布局 */
+.columns-2 {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.columns-2 > .column,
+.columns-2 > *:not(.column) {
+  flex: 1;
+  min-width: calc(50% - 0.75rem);
+  box-sizing: border-box;
+}
+
+/* 3列布局 */
+.columns-3 {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.columns-3 > .column,
+.columns-3 > *:not(.column) {
+  flex: 1;
+  min-width: calc(33.333% - 0.67rem);
+  box-sizing: border-box;
+}
+
+/* 4列布局 */
+.columns-4 {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.columns-4 > .column,
+.columns-4 > *:not(.column) {
+  flex: 1;
+  min-width: calc(25% - 0.75rem);
+  box-sizing: border-box;
+}
+
+/* 5列布局 */
+.columns-5 {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.columns-5 > .column,
+.columns-5 > *:not(.column) {
+  flex: 1;
+  min-width: calc(20% - 0.6rem);
+  box-sizing: border-box;
+}
+
+/* 6列布局 */
+.columns-6 {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.columns-6 > .column,
+.columns-6 > *:not(.column) {
+  flex: 1;
+  min-width: calc(16.666% - 0.42rem);
+  box-sizing: border-box;
+}
+
+/* 通用多列布局 - 使用 CSS Grid 实现任意列数 */
+.columns {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: start;
+}
+
+/* 动态列数支持 - 通过 data-columns 属性 */
+.columns[data-columns="1"] { grid-template-columns: 1fr; }
+.columns[data-columns="2"] { grid-template-columns: repeat(2, 1fr); }
+.columns[data-columns="3"] { grid-template-columns: repeat(3, 1fr); }
+.columns[data-columns="4"] { grid-template-columns: repeat(4, 1fr); }
+.columns[data-columns="5"] { grid-template-columns: repeat(5, 1fr); }
+.columns[data-columns="6"] { grid-template-columns: repeat(6, 1fr); }
+.columns[data-columns="7"] { grid-template-columns: repeat(7, 1fr); }
+.columns[data-columns="8"] { grid-template-columns: repeat(8, 1fr); }
+
+/* 响应式支持 - 平板端 */
+@media (max-width: 1024px) {
+  .columns-3, .columns-4, .columns-5, .columns-6,
+  .columns[data-columns="3"], .columns[data-columns="4"], 
+  .columns[data-columns="5"], .columns[data-columns="6"],
+  .columns[data-columns="7"], .columns[data-columns="8"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .columns-3 > *, .columns-4 > *, .columns-5 > *, .columns-6 > * {
+    min-width: calc(50% - 0.5rem);
+  }
+}
+
+/* 响应式支持 - 手机端 */
+@media (max-width: 768px) {
+  .columns-2, .columns-3, .columns-4, .columns-5, .columns-6,
+  .columns[data-columns="2"], .columns[data-columns="3"], 
+  .columns[data-columns="4"], .columns[data-columns="5"],
+  .columns[data-columns="6"], .columns[data-columns="7"], 
+  .columns[data-columns="8"] {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .columns-2 > *, .columns-3 > *, .columns-4 > *, 
+  .columns-5 > *, .columns-6 > * {
+    min-width: 100%;
+    flex: none;
+  }
+}
+
+/* 列内容样式增强 */
+.column, .columns > * {
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: transparent;
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 图片自适应 */
+.column img, .columns > * img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 文本内容处理 */
+.column p:first-child, .columns > * p:first-child {
+  margin-top: 0;
+}
+
+.column p:last-child, .columns > * p:last-child {
+  margin-bottom: 0;
+}
+
+/* 可选的边框样式 */
+.columns-bordered .column,
+.columns-bordered > * {
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+}
+
+/* 可选的阴影样式 */
+.columns-shadow .column,
+.columns-shadow > * {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .columns-shadow .column,
+[data-theme="dark"] .columns-shadow > * {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* ===== 单列特殊样式 ===== */
+
+/* 边框样式 */
+.column-border {
+  border: 2px solid var(--border-color, #e1e5e9);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--card-bg, #ffffff);
+  transition: border-color 0.3s ease;
+}
+
+.column-border:hover {
+  border-color: var(--primary-color, #007acc);
+}
+
+/* 深色模式边框适配 */
+[data-theme="dark"] .column-border {
+  border-color: var(--border-color-dark, #444);
+  background: var(--card-bg-dark, #2d2d2d);
+}
+
+[data-theme="dark"] .column-border:hover {
+  border-color: var(--primary-color-dark, #4db8ff);
+}
+
+/* 阴影样式 */
+.column-shade {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--card-bg, #ffffff);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.column-shade:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 深色模式阴影适配 */
+[data-theme="dark"] .column-shade {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: var(--card-bg-dark, #2d2d2d);
+}
+
+[data-theme="dark"] .column-shade:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 组合样式：边框+阴影 */
+.column-border.column-shade {
+  border: 2px solid var(--border-color, #e1e5e9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.column-border.column-shade:hover {
+  border-color: var(--primary-color, #007acc);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .column-border.column-shade {
+  border-color: var(--border-color-dark, #444);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .column-border.column-shade:hover {
+  border-color: var(--primary-color-dark, #4db8ff);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 特殊布局：不等宽列 */
+.columns-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.columns-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.columns-1-2-1 {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* 响应式不等宽列 */
+@media (max-width: 768px) {
+  .columns-1-2, .columns-2-1, .columns-1-2-1 {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,58 @@
+{{/*
+多列布局 shortcode - 支持Markdown风格语法
+用法1 - 传统方式：
+{{< columns count="2" >}}
+{{< column >}}
+**第一列内容**
+{{< /column >}}
+{{< column >}}
+**第二列内容**
+{{< /column >}}
+{{< /columns >}}
+
+用法2 - 简化语法：
+{{< columns "2" >}}
+第一列内容
+---
+第二列内容
+{{< /columns >}}
+*/}}
+
+{{- $count := .Get 0 | default (.Get "count") | default "2" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $style := .Get "style" | default "" -}}
+{{- $bordered := .Get "bordered" | default false -}}
+{{- $shadow := .Get "shadow" | default false -}}
+
+{{- $classStr := printf "columns-%s" $count -}}
+{{- if $bordered -}}
+  {{- $classStr = printf "%s columns-bordered" $classStr -}}
+{{- end -}}
+{{- if $shadow -}}
+  {{- $classStr = printf "%s columns-shadow" $classStr -}}
+{{- end -}}
+{{- if $class -}}
+  {{- $classStr = printf "%s %s" $classStr $class -}}
+{{- end -}}
+
+{{- $content := .Inner -}}
+
+{{- /* 检查是否使用简化语法（用---分隔列） */ -}}
+{{- if in $content "---" -}}
+  {{- $columns := split $content "---" -}}
+  <div class="{{ $classStr }}"{{ if $style }} style="{{ $style }}"{{ end }}>
+    {{- range $columns -}}
+      {{- $trimmed := trim . "\n\r\t " -}}
+      {{- if $trimmed -}}
+        <div class="column">
+          {{ $trimmed | markdownify }}
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+{{- else -}}
+  {{- /* 传统嵌套column shortcode方式 */ -}}
+  <div class="{{ $classStr }}"{{ if $style }} style="{{ $style }}"{{ end }}>
+    {{ $content }}
+  </div>
+{{- end -}}

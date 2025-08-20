@@ -1,0 +1,83 @@
+{{- $lang := .Type -}}
+{{- $content := .Inner -}}
+
+{{- if eq $lang "multi-col" -}}
+  {{- /* 多列布局语法：支持动态反引号数量和特殊列样式 */ -}}
+  {{- if or (in $content "```col") (in $content "```col-border") (in $content "```col-shade") -}}
+    {{- /* 预处理：标准化所有列标记为统一格式 */ -}}
+    {{- $processedContent := $content -}}
+    {{- $processedContent = replace $processedContent "```col-border" "```col|border" -}}
+    {{- $processedContent = replace $processedContent "```col-shade" "```col|shade" -}}
+    
+    {{- /* 分割内容获取所有列 */ -}}
+    {{- $parts := split $processedContent "```col" -}}
+    {{- $columns := slice -}}
+    
+    {{- range $index, $part := $parts -}}
+      {{- if gt $index 0 -}}
+        {{- /* 检查列类型 */ -}}
+        {{- $columnType := "column" -}}
+        {{- $lines := split $part "\n" -}}
+        {{- $firstLine := "" -}}
+        {{- if gt (len $lines) 0 -}}
+          {{- $firstLine = trim (index $lines 0) " \t\r" -}}
+        {{- end -}}
+        
+        {{- if hasPrefix $firstLine "|border" -}}
+          {{- $columnType = "column column-border" -}}
+        {{- else if hasPrefix $firstLine "|shade" -}}
+          {{- $columnType = "column column-shade" -}}
+        {{- end -}}
+        
+        {{- /* 提取列内容 */ -}}
+        {{- $columnContent := "" -}}
+        {{- $inColumn := true -}}
+        {{- $startIndex := 0 -}}
+        
+        {{- if or (hasPrefix $firstLine "|border") (hasPrefix $firstLine "|shade") -}}
+          {{- $startIndex = 1 -}}
+        {{- end -}}
+        
+        {{- range $lineIndex, $line := $lines -}}
+          {{- if lt $lineIndex $startIndex -}}
+            {{- /* 跳过类型标记行 */ -}}
+          {{- else if and $inColumn (eq (trim $line " \t\r") "```") -}}
+            {{- $inColumn = false -}}
+          {{- else if $inColumn -}}
+            {{- if $columnContent -}}
+              {{- $columnContent = printf "%s\n%s" $columnContent $line -}}
+            {{- else -}}
+              {{- $columnContent = $line -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        
+        {{- $trimmed := trim $columnContent "\n\r\t " -}}
+        {{- if $trimmed -}}
+          {{- $columnData := dict "content" $trimmed "class" $columnType -}}
+          {{- $columns = $columns | append $columnData -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    
+    {{- $colCount := len $columns -}}
+    {{- if gt $colCount 0 -}}
+      <div class="columns-{{ $colCount }}">
+        {{- range $columns -}}
+          <div class="{{ .class }}">
+            {{ .content | markdownify }}
+          </div>
+        {{- end -}}
+      </div>
+    {{- end -}}
+  {{- else -}}
+    {{- /* 如果没有```col，显示为普通代码块 */ -}}
+    <div class="highlight">
+      <pre tabindex="0" class="chroma"><code class="language-multi-col" data-lang="multi-col">{{- .Inner -}}</code></pre>
+    </div>
+  {{- end -}}
+
+{{- else -}}
+  {{- /* 使用Hugo内置的语法高亮处理普通代码块 */ -}}
+  {{ highlight .Inner .Type "" }}
+{{- end -}}

@@ -1,0 +1,18 @@
+name = "ScholarLite"
+license = "MIT"
+licenselink = "LICENSE"
+description = "A minimalistic theme for scholars to showcase their publications."
+
+# The home page of the theme, where the source can be found.
+homepage = "https://github.com/Yiming-M/ScholarLite"
+
+# If you have a running demo of the theme.
+demosite = "https://yiming-m.github.io"
+
+tags = ["portofolio", "minimal", "research", "scholar", "personal", "dark mode"]
+features = ["dark mode", "minimal", "tags", "search"]
+
+# If the theme has a single author
+[author]
+    name = "Yiming Ma"
+    homepage = "https://yiming-m.github.io"

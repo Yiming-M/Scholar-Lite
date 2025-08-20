@@ -1,0 +1,633 @@
+/* 移动端样式 - 适用于768px以下的设备 */
+
+/* 移动端弹出搜索框 */
+.mobile-search-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20dvh;
+}
+
+.mobile-search-container {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 0 20px;
+  width: calc(100dvh - 40px);
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-search-container .search-box {
+  margin-bottom: 1rem;
+}
+
+.mobile-search-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.mobile-search-close:hover {
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  /* 移动端布局 - 只显示中间栏 */
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 0;
+    padding: 5px;
+    margin: 0; /* 移除auto margin，确保没有额外的margin */
+  }
+  
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* 左侧栏在移动端隐藏，通过ℹ️图标显示 */
+  .sidebar-left {
+    position: fixed;
+    top: 5px; /* 与container的padding-top对齐 */
+    left: -400px; /* 默认隐藏 */
+    width: 280px;
+    height: calc(100dvh - 10px); /* 与content-main的高度一致 */
+    background: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0rem 1.0rem 1.0rem;
+    margin-top: 0; /* 移除margin-top确保从顶部开始 */
+    border-radius: 6px; /* 与content-main的border-radius一致 */
+    box-sizing: border-box; /* 确保padding包含在高度内 */
+    height: calc(100dvh - 10px); /* 确保最大高度与content-main一致 */
+  }
+  
+  /* 左侧栏展开状态 */
+  .sidebar-left.active {
+    left: 0;
+  }
+  
+  /* 左侧栏内容样式调整 - 继承平板端设计 */
+  .sidebar-left .profile-section {
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+    padding-right: 1.0rem;
+  }
+  
+  .sidebar-left .recent-news {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-top: 0.5rem;
+  }
+  
+  /* 左侧栏内的个人资料样式 - 继承平板端设计 */
+  .sidebar-left .profile-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-left .profile-img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin: 0 auto 0.5rem;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+  }
+  
+  .sidebar-left .profile-header h1 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--text-color);
+  }
+  
+  .sidebar-left .profile-bio {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.0rem;
+    color: var(--text-muted);
+  }
+  
+  /* 左侧栏内的社交链接样式 - 4列圆形布局 */
+  .sidebar-left .social-links {
+    display: flex; /* 启用Flexbox布局 */
+    flex-wrap: wrap; /* 允许换行，当图标超过一行时自动换到下一行 */
+    justify-content: center; /* 核心：实现行内图标的水平居中对齐 */
+    align-items: center; /* 垂直对齐图标（如果高度不一） */
+    gap: 1rem; /* 设置图标之间的统一间距，比margin更现代 */
+    /* 基础样式 */
+    padding: 0;
+    margin: 0 0 0rem 0; /* 只保留下外边距 */
+    list-style: none; /* 如果您使用<ul>作为容器，这会移除列表点 */
+    min-height: 3rem; /* 即使只有一个图标，也保持最小高度 */
+  }
+  
+  
+  .sidebar-left .social-link {
+    /* 移除旧的flex-basis和margin:auto，因为布局由父容器控制 */
+    /* flex: 0 0 calc(25% - 0.6rem); (移除) */
+    /* margin: 0 auto; (移除) */
+    
+    display: inline-flex; /* 使用inline-flex使其表现像一个内联元素，同时保持内部的flex特性 */
+    align-items: center; /* 垂直居中内部的SVG或文字 */
+    justify-content: center; /* 水平居中内部的SVG或文字 */
+  
+    /* 图标外观样式 (基本保持不变) */
+    width: 2.5rem; /* 稍微增大点击区域 */
+    height: 2.5rem;
+    background: var(--hover-bg);
+    border-radius: 50%;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-left .social-link:hover {
+    background: var(--border-color);
+    transform: translateY(-3px); /* 稍微增强悬停效果 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .sidebar-left .social-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .sidebar-left .social-link:empty{
+    display: none;
+  }
+  
+  /* 左侧栏内的新闻样式 - 继承平板端设计 */
+  .sidebar-left .recent-news h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  
+  .sidebar-left .news-item {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+  }
+  
+  /* 主内容区域调整 - 占据全宽并添加滑动条 */
+  .content-main {
+    position: static;
+    height: calc(100dvh - 10px); /* 固定高度，考虑container的padding */
+    display: flex !important;
+    flex-direction: column;
+    overflow-y: auto; /* 启用垂直滚动 */
+    padding: 5px;
+    border-radius: 6px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    margin-top: 0; /* 移除margin-top确保从顶部开始 */
+    margin-bottom: 0; /* 确保没有底部margin */
+    box-sizing: border-box; /* 确保padding包含在高度内 */
+  }
+  
+  /* 文章卡片样式 - 继承平板端设计 */
+  .post-card {
+    margin-bottom: 0.5rem; /* 减少卡片之间的间距 */
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    padding: 0; /* 覆盖全局的padding */
+    border-bottom: none; /* 移除底部边框 */
+  }
+  
+  /* 移动端居中显示的文章更宽 */
+  .post-card.centered {
+    padding: 5px; /* 居中状态下的padding */
+  }
+  
+  /* 移动端居中状态下的内容区域 */
+  .post-card.centered .post-content {
+    padding: 5px; /* 确保内容区域的padding */
+  }
+
+  /* 主要内容标题 - 继承平板端设计 */
+  .main-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0.25rem 0.5rem 0.5rem 0.5rem; /* 减少底部margin */
+    color: var(--text-color);
+    flex-shrink: 0; /* 确保标题不会被压缩 */
+    display: block; /* 确保标题显示为块级元素 */
+  }
+  
+  /* 文章头部样式 */
+  .post-header {
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+  }
+  
+  .post-header h2 {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--text-color);
+  }
+  
+  /* 文章元数据样式 */
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  /* 标签样式 */
+  .tag {
+    font-size: 0.8rem;
+    padding: 0.1rem 0.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* 手机模式下post中标签的样式调整 */
+  .post-meta .tag-venue,
+  .post-keywords .tag-keyword {
+    cursor: pointer !important;
+  }
+  
+  .post-meta .tag-venue.tag-red:hover,
+  .post-keywords .tag-keyword.tag-red:hover {
+    background: var(--tag-red-bg);
+    color: var(--tag-red-color);
+  }
+
+  .post-meta .tag-venue.tag-green:hover,
+  .post-keywords .tag-keyword.tag-green:hover {
+    background: var(--tag-green-bg);
+    color: var(--tag-green-color);
+  }
+
+  .post-meta .tag-venue.tag-blue:hover,
+  .post-keywords .tag-keyword.tag-blue:hover {
+    background: var(--tag-blue-bg);
+    color: var(--tag-blue-color);
+  }
+
+  .post-meta .tag-venue.tag-yellow:hover,
+  .post-keywords .tag-keyword.tag-yellow:hover {
+    background: var(--tag-yellow-bg);
+    color: var(--tag-yellow-color);
+  }
+
+  .post-meta .tag-venue.tag-purple:hover,
+  .post-keywords .tag-keyword.tag-purple:hover {
+    background: var(--tag-purple-bg);
+    color: var(--tag-purple-color);
+  }
+
+  .post-meta .tag-venue.tag-orange:hover,
+  .post-keywords .tag-keyword.tag-orange:hover {
+    background: var(--tag-orange-bg);
+    color: var(--tag-orange-color);
+  }
+
+  .post-meta .tag-venue.tag-teal:hover,
+  .post-keywords .tag-keyword.tag-teal:hover {
+    background: var(--tag-teal-bg);
+    color: var(--tag-teal-color);
+  }
+
+  .post-meta .tag-venue.tag-pink:hover,
+  .post-keywords .tag-keyword.tag-pink:hover {
+    background: var(--tag-pink-bg);
+    color: var(--tag-pink-color);
+  }
+
+  .post-meta .tag-venue.tag-indigo:hover,
+  .post-keywords .tag-keyword.tag-indigo:hover {
+    background: var(--tag-indigo-bg);
+    color: var(--tag-indigo-color);
+  }
+
+  .post-meta .tag-venue.tag-cyan:hover,
+  .post-keywords .tag-keyword.tag-cyan:hover {
+    background: var(--tag-cyan-bg);
+    color: var(--tag-cyan-color);
+  }
+  
+  /* 当标签被取消选中后，强制清除悬停状态 */
+  .post-card.centered:not(.post-card.centered):hover {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+  .post-card.centered:not(.post-card.centered):active {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+  }
+
+  /* 当标签被取消选中后，强制清除高亮状态 */
+  .post-meta .tag-venue.tag-red:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-red:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-red-bg) !important;
+    border-color: var(--tag-red-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-green:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-green:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-green-bg) !important;
+    border-color: var(--tag-green-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-blue:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-blue:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-blue-bg) !important;
+    border-color: var(--tag-blue-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-yellow:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-yellow:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-yellow-bg) !important;
+    border-color: var(--tag-yellow-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-purple:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-purple:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-purple-bg) !important;
+    border-color: var(--tag-purple-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-orange:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-orange:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-orange-bg) !important;
+    border-color: var(--tag-orange-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-teal:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-teal:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-teal-bg) !important;
+    border-color: var(--tag-teal-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-pink:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-pink:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-pink-bg) !important;
+    border-color: var(--tag-pink-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-indigo:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-indigo:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-indigo-bg) !important;
+    border-color: var(--tag-indigo-bg) !important;
+  }
+
+  .post-meta .tag-venue.tag-cyan:not(.tag-venue-active):hover,
+  .post-keywords .tag-keyword.tag-cyan:not(.tag-keyword-active):hover {
+    background: transparent !important;
+    color: var(--tag-cyan-bg) !important;
+    border-color: var(--tag-cyan-bg) !important;
+  }
+  
+  /* 右侧栏在移动端完全隐藏，只保留搜索功能通过图标访问 */
+  .sidebar-right {
+    display: none;
+  }
+  
+  /* 移动端搜索切换按钮 */
+  .search-toggle {
+    display: flex;
+    position: fixed;
+    top: 2.5px;
+    right: 2.5px;
+    z-index: 1000;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .search-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  html[data-theme="dark"] .search-toggle {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+  }
+
+  html[data-theme="dark"] .search-toggle:hover {
+    background: var(--hover-bg);
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+  }
+  
+  /* 移动端左侧栏切换按钮 */
+  .sidebar-toggle {
+    position: fixed;
+    top: 2.5px;
+    left: 2.5px;
+    z-index: 1001;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  /* 左侧栏遮罩层 */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* 移动端隐藏clear all filters按钮 */
+  .clear-filters-btn {
+    display: none;
+  }
+  
+  /* 搜索框 */
+  .search-box input {
+    font-size: 16px;
+    padding: 0.6rem;
+  }
+  
+  /* 移动端搜索弹窗优化 */
+  .mobile-search-overlay {
+    padding-top: 15dvh;
+  }
+  
+  .mobile-search-container {
+    margin: 0 15px;
+    width: calc(100% - 30px);
+    padding: 1rem;
+  }
+  
+  /* 确保滚动条样式在移动端也适用 */
+  .sidebar-left::-webkit-scrollbar,
+  .content-main::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .sidebar-left::-webkit-scrollbar-track,
+  .content-main::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+  
+  .sidebar-left::-webkit-scrollbar-thumb,
+  .content-main::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 3px;
+  }
+  
+  .sidebar-left::-webkit-scrollbar-thumb:hover,
+  .content-main::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+  }
+  
+  /* 移动端中间栏滚动条样式优化 */
+  .content-main {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-muted) var(--border-color);
+  }
+  
+  /* 深色模式下的滚动条样式 */
+  [data-theme="dark"] .content-main::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  [data-theme="dark"] .content-main::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  [data-theme="dark"] .content-main {
+    scrollbar-color: rgba(255, 255, 255, 0.2) var(--border-color);
+  }
+  
+  /* 确保左侧栏内容能够正确显示 */
+  .profile-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .recent-news {
+    flex: 1;
+  }
+  
+  /* 移动端posts-section样式调整 */
+  .posts-section {
+    padding: 5px 5px 0 5px;
+    height: auto;
+    overflow-y: auto; /* 如果内容过多，允许滚动 */
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* 移动端特定的代码块响应式设计 */
+@media (max-width: 768px) {
+  .katex {
+    font-size: 1rem;
+  }
+  
+  /* 移动端favicon调整 */
+  .link-favicon {
+    width: 14px;
+    height: 14px;
+    margin-right: 3px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  /* 增大可点击区域 */
+  .post-header {
+    margin-bottom: 0rem;
+    /* border-bottom: 1px solid var(--border-color); */
+    padding-bottom: 0.5rem;
+  }
+
+  .post {
+    background: var(--card-bg);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+  }
+  
+  .tag {
+    /* min-height: px; */
+    padding: 0.1rem 0.2rem;
+  }
+  
+  /* 移除悬停效果，改为点击效果 */
+  .post-header:active {
+    background-color: var(--hover-bg);
+    transform: scale(0.98);
+  }
+  
+  .social-link:active {
+    transform: scale(0.95);
+  }
+  
+}

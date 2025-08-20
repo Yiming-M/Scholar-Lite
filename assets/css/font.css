@@ -1,0 +1,190 @@
+/* 字体定义文件 */
+
+/* 中文字体 - LXGWBrightGB */
+@font-face {
+  font-family: "LXGWBrightGB";
+  src: url('/fonts/LXGWBrightGB-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3040-309F, U+30A0-30FF, U+AC00-D7AF;
+}
+
+@font-face {
+  font-family: "LXGWBrightGB";
+  src: url('/fonts/LXGWBrightGB-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3040-309F, U+30A0-30FF, U+AC00-D7AF;
+}
+
+@font-face {
+  font-family: "LXGWBrightGB";
+  src: url('/fonts/LXGWBrightGB-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3040-309F, U+30A0-30FF, U+AC00-D7AF;
+}
+
+@font-face {
+  font-family: "LXGWBrightGB";
+  src: url('/fonts/LXGWBrightGB-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3040-309F, U+30A0-30FF, U+AC00-D7AF;
+}
+
+@font-face {
+  font-family: "LXGWBrightGB";
+  src: url('/fonts/LXGWBrightGB-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3040-309F, U+30A0-30FF, U+AC00-D7AF;
+}
+
+@font-face {
+  font-family: "LXGWBrightGB";
+  src: url('/fonts/LXGWBrightGB-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+3040-309F, U+30A0-30FF, U+AC00-D7AF;
+}
+
+/* 代码字体 - CaskaydiaCoveNerdFont */
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-SemiLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-SemiLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-ExtraLight.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCoveNerdFont";
+  src: url('/fonts/CaskaydiaCoveNerdFont-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* 字体样式类 */
+.chinese-light {
+  font-family: "LXGWBrightGB", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.chinese-light-italic {
+  font-family: "LXGWBrightGB", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.chinese-regular {
+  font-family: "LXGWBrightGB", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.chinese-italic {
+  font-family: "LXGWBrightGB", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.chinese-medium {
+  font-family: "LXGWBrightGB", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.chinese-medium-italic {
+  font-family: "LXGWBrightGB", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}

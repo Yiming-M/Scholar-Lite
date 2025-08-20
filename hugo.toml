@@ -1,0 +1,158 @@
+baseURL = "https://www.jane.doe/"
+languageCode = "en-us"
+title = "Jane's Portfolio"
+theme = "scholar-lite"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+      hardWraps = false
+      xhtml = false
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+      wrapStandAloneImageWithinParagraph = false
+    [markup.goldmark.extensions]
+      typographer = false
+      linkify = false
+      strikethrough = false
+      definitionList = false
+      footnote = false
+      table = true
+      taskList = false
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      [markup.goldmark.extensions.passthrough.delimiters]
+        block = [['$$', '$$'], ['\\[', '\\]']]
+        inline = [['$', '$'], ['\\(', '\\)']]
+  [markup.highlight]
+    style = 'github'
+    lineNos = false
+    lineNumbersInTable = false
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ''
+    hl_inline = false
+    noClasses = false
+    noHl = false
+    tabWidth = 4
+
+[taxonomies]
+  venue = "venue"
+  tag = "tags"
+
+[params]
+  profilePhoto = "/images/profile.svg"  # 个人头像照片
+  bio = """I am a researcher interested in machine learning and AI. 
+  You can find my work on [GitHub](https://github.com) and connect with me on [Twitter](https://twitter.com).
+  
+  Currently working on exciting projects in deep learning and natural language processing."""
+
+  # Social Media
+  [[params.social]]
+    name = "Google Scholar"
+    url = "https://scholar.google.com/"
+
+  [[params.social]]
+    name = "X"
+    url = "https://twitter.com/yourusername"
+
+  [[params.social]]
+    name = "LinkedIn"
+    url = "https://linkedin.com/in/yourusername"
+
+  [[params.social]]
+    name = "Email"
+    url = "mailto:your.email@example.com"
+
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/yourusername"
+
+  [[params.social]]
+    name = "Instagram"
+    url = "https://www.instagram.com/yourusername"
+
+  [[params.social]]
+    name = "Discord"
+    url = "https://www.discord.com/yourusername"
+
+  [[params.social]]
+    name = "Facebook"
+    url = "https://www.facebook.com/yourusername"
+
+  [[params.social]]
+    name = "YouTube"
+    url = "https://www.youtube.com/@yourchannel"
+    
+  [[params.social]]
+    name = "TikTok"
+    url = "https://www.tiktok.com/@yourusername"
+    
+  [[params.social]]
+    name = "Telegram"
+    url = "https://t.me/yourusername"
+    
+  [[params.social]]
+    name = "BlueSky"
+    url = "https://bsky.app/profile/yourusername.bsky.social"
+    
+  # Recent News  # Recent News
+  [[params.news]]
+    date = "2024-01-15"
+    content = "🎉 Our paper on **AI Ethics** has been accepted to ICML 2024!"
+
+  [[params.news]]
+    date = "2024-01-10"
+    content = "🚀 Launched a new [open-source project](https://github.com) for data visualization."
+
+  [[params.news]]
+    date = "2024-01-05"
+    content = "📢 Giving a talk at the upcoming **AI Conference 2024**."
+
+  [[params.news]]
+    date = "2024-01-01"
+    content = "🎊 Happy New Year! Looking forward to an exciting year of research."
+
+  [[params.news]]
+    date = "2023-12-20"
+    content = "📝 Published a new [blog post](https://example.com) about machine learning trends."
+
+  [[params.news]]
+    date = "2023-12-15"
+    content = "🎓 Successfully defended my PhD thesis on **Deep Learning Applications**!"
+
+  [[params.news]]
+    date = "2023-12-10"
+    content = "🏆 Won the **Best Paper Award** at NeurIPS 2023."
+
+  [[params.news]]
+    date = "2023-12-05"
+    content = "💼 Started a new position as **Senior Research Scientist** at [Tech Corp](https://example.com)."
+
+  [[params.news]]
+    date = "2023-12-01"
+    content = "📚 New research on **Natural Language Processing** featured in [Nature](https://nature.com)."
+
+  [[params.news]]
+    date = "2023-11-25"
+    content = "🎤 Gave a keynote speech at the **International AI Summit 2023**."
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Archives'
+    pageRef = '/posts'
+    weight = 20
+    
+  [[menus.main]]
+    name = 'Venues'
+    pageRef = '/venue'
+    weight = 30

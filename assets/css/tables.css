@@ -1,0 +1,84 @@
+/* ===== 表格美化样式 ===== */
+
+/* 基础表格样式 */
+/* 基础表格样式 */
+table {
+  width: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem auto; /* 居中展示 */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: var(--table-bg);
+  table-layout: auto; /* 自动调整列宽 */
+}
+
+/* 表头样式 */
+thead th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary, --text-color);
+  border-bottom: 2px solid var(--table-border-color);
+  background: var(--table-header-bg);
+  word-wrap: break-word; /* 长文本自动换行 */
+  overflow-wrap: break-word;
+}
+
+/* 表体样式 */
+tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--table-border-color);
+  vertical-align: top;
+  word-wrap: break-word; /* 长文本自动换行 */
+  overflow-wrap: break-word;
+}
+
+/* 行悬停效果 - 仅针对文章内容中的表格 */
+.content tbody tr:hover,
+.content-main tbody tr:hover,
+article tbody tr:hover,
+main tbody tr:hover {
+background: var(--table-hover-bg);
+}
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.9rem;
+    width: 100%; /* 移动端占满容器宽度 */
+    display: block;
+    overflow-x: auto; /* 水平滚动 */
+    white-space: nowrap; /* 防止单元格内容换行 */
+    -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+  }
+  
+  /* 在移动端重置为表格显示 */
+  table thead,
+  table tbody,
+  table tr {
+    display: table;
+    width: 100%;
+  }
+  
+  thead th,
+  tbody td {
+    padding: 0.5rem 0.75rem;
+    white-space: normal; /* 允许单元格内容换行 */
+    min-width: 80px; /* 最小列宽 */
+  }
+}
+
+/* 更小屏幕的额外优化 */
+@media (max-width: 480px) {
+  table {
+    font-size: 0.85rem;
+  }
+  
+  thead th,
+  tbody td {
+    padding: 0.4rem 0.6rem;
+    min-width: 60px;
+  }
+}

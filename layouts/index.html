@@ -1,0 +1,39 @@
+{{ define "main" }}
+  <!-- DEBUG: Using index.html template -->
+  <div class="posts-container">
+    <div class="posts-section">
+      {{ $index := 0 }}
+      {{ range site.RegularPages }}
+        {{ $index = add $index 1 }}
+        <article class="post-card" data-post-id="{{ $index }}">
+          <div class="post-header" data-post-id="{{ $index }}">
+            <div class="post-title-section">
+              <h2>{{ .LinkTitle }}</h2>
+              <div class="post-meta">
+                <time>{{ .Date.Format "Jan 2, 2006" }}</time>
+                {{ with .Params.venue }} 
+                  • <span class="tag tag-venue">{{ . }}</span>
+                {{ end }}
+              </div>
+              <div class="tag-section">
+                {{ if and (.Params.keywords) (gt (len .Params.keywords) 0) }}
+                  <div class="post-keywords">
+                    {{ range .Params.keywords }}
+                      <span class="tag tag-keyword">{{ . }}</span>
+                    {{ end }}
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="post-content" id="content-{{ $index }}" style="display: none;">
+            <div class="post-full-content">
+              {{ .Content }}
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

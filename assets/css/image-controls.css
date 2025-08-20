@@ -1,0 +1,143 @@
+/* 图片控制样式 - 支持通过markdown语法控制宽度和位置 */
+
+/* 基础图片容器 */
+.image-container {
+  display: block;
+  margin: 1rem 0;
+  text-align: center; /* 默认居中 */
+}
+
+/* 宽度控制类 */
+.image-width-10 { max-width: 10% !important; }
+.image-width-20 { max-width: 20% !important; }
+.image-width-25 { max-width: 25% !important; }
+.image-width-30 { max-width: 30% !important; }
+.image-width-40 { max-width: 40% !important; }
+.image-width-50 { max-width: 50% !important; }
+.image-width-60 { max-width: 60% !important; }
+.image-width-70 { max-width: 70% !important; }
+.image-width-75 { max-width: 75% !important; }
+.image-width-80 { max-width: 80% !important; }
+.image-width-90 { max-width: 90% !important; }
+.image-width-100 { max-width: 100% !important; }
+
+/* 位置控制类 */
+.image-position-left {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.image-position-center {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.image-position-right {
+  text-align: right !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* 图片本身的样式 - 仅作用于图片容器内的图片 */
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 图片 Caption 样式，居中显示在图片下方 */
+.image-caption {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
+  font-style: italic;
+  word-break: break-word;
+}
+
+/* 确保favicon和包含favicon的链接不受影响 */
+.link-favicon {
+  width: 16px !important;
+  height: 16px !important;
+  display: inline !important;
+  margin: 0 0.3em 0 0 !important;  /* 右边距增加间距 */
+  padding: 0 !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  vertical-align: middle !important;
+}
+
+.image-container img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+/* 深色模式下的图片样式 */
+[data-theme="dark"] .image-container img {
+  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .image-container img:hover {
+  opacity: 1;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+/* 左对齐图片特殊处理 */
+.image-position-left img {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* 右对齐图片特殊处理 */
+.image-position-right img {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .image-container {
+    margin: 0.75rem 0;
+  }
+  
+  /* 在小屏幕上，所有图片最大宽度为100% */
+  .image-width-10,
+  .image-width-20,
+  .image-width-25,
+  .image-width-30,
+  .image-width-40,
+  .image-width-50,
+  .image-width-60,
+  .image-width-70,
+  .image-width-75,
+  .image-width-80,
+  .image-width-90,
+  .image-width-100 {
+    max-width: 100% !important;
+  }
+  
+  /* 在小屏幕上都居中显示 */
+  .image-position-left,
+  .image-position-right {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  .image-position-left img,
+  .image-position-right img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

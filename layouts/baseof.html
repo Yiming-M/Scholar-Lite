@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <!-- DEBUG: Using simplified baseof.html -->
+  <button class="clear-filters-btn" id="clear-filters-btn" aria-label="Clear all filters" title="Clear all filters">
+    <span>🗑</span>
+  </button>
+
+  <!-- 移动端搜索切换按钮 -->
+  <button class="search-toggle" id="search-toggle" aria-label="Search" title="Search">
+    <span>🔍</span>
+  </button>
+
+  <!-- 移动端搜索弹窗 -->
+  <div class="mobile-search-overlay" id="mobile-search-overlay">
+    <div class="mobile-search-container">
+      <button class="mobile-search-close" id="mobile-search-close">&times;</button>
+      <div class="search-box">
+        <input type="text" id="mobile-search-input" placeholder="Search posts..." />
+        <div id="mobile-search-results"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- 左侧栏 -->
+    <aside class="sidebar-left">
+      <div class="profile-section">
+        <div class="profile-header">
+          <img src="{{ site.Params.profilePhoto | default "/favicon.ico" }}" alt="Profile Photo" class="profile-img">
+          <h1>{{ site.Title }}</h1>
+        </div>
+        
+        <div class="profile-bio">
+          {{ site.Params.bio | markdownify }}
+        </div>
+        
+        <!-- 社交媒体链接 -->
+        <div class="social-links">
+          {{ range site.Params.social }}
+            <a href="{{ .url }}" target="_blank" class="social-link" title="{{ .name }}">
+              {{ if eq .name "GitHub" }}
+                <svg class="social-icon" width="800" height="800" viewBox="4 4 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24.92 12.183c0-1.586-.604-2.864-1.585-3.83.172-.547.398-1.763-.229-3.321 0 0-1.114-.348-3.628 1.315a12.695 12.695 0 0 0-3.081-.366c-1.154 0-2.322.143-3.409.44-2.596-1.747-3.74-1.391-3.74-1.391-.748 1.847-.287 3.215-.145 3.554-.883.936-1.414 2.133-1.414 3.594 0 1.111.128 2.099.44 2.964l.325.732c.879 1.614 2.606 2.655 5.677 2.983-.434.289-.885.779-1.062 1.612-.594.28-2.475.966-3.603-.944 0 0-.633-1.148-1.842-1.235 0 0-1.174-.017-.08.722 0 0 .782.367 1.326 1.738 0 0 .705 2.342 4.114 1.593v2.417s-.076.857-.867 1.143c0 0-.469.312.034.497 0 0 2.205.174 2.205-1.604v-2.643s-.09-1.047.429-1.404v4.332s-.032 1.031-.576 1.421c0 0-.362.646.433.468 0 0 1.517-.211 1.584-1.967l.035-4.383h.363l.033 4.383c.076 1.748 1.59 1.967 1.59 1.967.793.179.429-.468.429-.468-.54-.389-.579-1.421-.579-1.421v-4.297c.52.402.436 1.369.436 1.369v2.643c0 1.777 2.2 1.604 2.2 1.604.505-.186.036-.498.036-.498-.793-.286-.867-1.143-.867-1.143v-3.461c0-1.346-.574-2.056-1.137-2.435 3.277-.318 4.845-1.368 5.572-2.99-.015.027.26-.726.26-.726.25-.859.325-1.855.325-2.963h-.002z"/></svg>
+              {{ else if eq .name "Twitter" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+              {{ else if eq .name "X" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                </svg>
+              {{ else if eq .name "LinkedIn" }}
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="2500" height="2389" viewBox="0 5 1036 990"><path d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z"/></svg>
+              {{ else if eq .name "Email" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              {{ else if eq .name "Google Scholar" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                  <path d="M12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
+                </svg>
+              {{ else if eq .name "Instagram" }}
+                <svg class="social-icon" width="800px" height="800px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2ZM12 15.88C9.86 15.88 8.12 14.14 8.12 12C8.12 9.86 9.86 8.12 12 8.12C14.14 8.12 15.88 9.86 15.88 12C15.88 14.14 14.14 15.88 12 15.88ZM17.92 6.88C17.87 7 17.8 7.11 17.71 7.21C17.61 7.3 17.5 7.37 17.38 7.42C17.26 7.47 17.13 7.5 17 7.5C16.73 7.5 16.48 7.4 16.29 7.21C16.2 7.11 16.13 7 16.08 6.88C16.03 6.76 16 6.63 16 6.5C16 6.37 16.03 6.24 16.08 6.12C16.13 5.99 16.2 5.89 16.29 5.79C16.52 5.56 16.87 5.45 17.19 5.52C17.26 5.53 17.32 5.55 17.38 5.58C17.44 5.6 17.5 5.63 17.56 5.67C17.61 5.7 17.66 5.75 17.71 5.79C17.8 5.89 17.87 5.99 17.92 6.12C17.97 6.24 18 6.37 18 6.5C18 6.63 17.97 6.76 17.92 6.88Z"/></svg>
+              {{ else if eq .name "Facebook" }}
+                <svg class="social-icon" width="800" height="800" viewBox="4 4 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"/></svg>
+              {{ else if eq .name "YouTube" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              {{ else if eq .name "Discord" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.01024 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.10249 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0002 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/>
+                </svg>
+              {{ else if eq .name "Telegram" }}
+                <svg class="social-icon" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M29.919 6.163l-4.225 19.925c-0.319 1.406-1.15 1.756-2.331 1.094l-6.438-4.744-3.106 2.988c-0.344 0.344-0.631 0.631-1.294 0.631l0.463-6.556 11.931-10.781c0.519-0.462-0.113-0.719-0.806-0.256l-14.75 9.288-6.35-1.988c-1.381-0.431-1.406-1.381 0.288-2.044l24.837-9.569c1.15-0.431 2.156 0.256 1.781 2.013z"/></svg>
+              {{ else if eq .name "BlueSky" }}
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -3.268 64 68.414" width="2232" height="2500"><path fill="currentColor" d="M13.873 3.805C21.21 9.332 29.103 20.537 32 26.55v15.882c0-.338-.13.044-.41.867-1.512 4.456-7.418 21.847-20.923 7.944-7.111-7.32-3.819-14.64 9.125-16.85-7.405 1.264-15.73-.825-18.014-9.015C1.12 23.022 0 8.51 0 6.55 0-3.268 8.579-.182 13.873 3.805zm36.254 0C42.79 9.332 34.897 20.537 32 26.55v15.882c0-.338.13.044.41.867 1.512 4.456 7.418 21.847 20.923 7.944 7.111-7.32 3.819-14.64-9.125-16.85 7.405 1.264 15.73-.825 18.014-9.015C62.88 23.022 64 8.51 64 6.55c0-9.818-8.578-6.732-13.873-2.745z"/></svg>
+              {{ else if eq .name "TikTok" }}
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                </svg>
+
+              {{ else }}
+                <span class="social-icon-emoji">{{ .icon }}</span>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+      
+      <!-- 最近新闻 -->
+      <div class="recent-news">
+        <h3>📰 Recent News</h3>
+        <div class="news-list">
+          {{ range site.Params.news }}
+            <div class="news-item">
+              <div class="news-date">{{ .date }}</div>
+              <div class="news-content">{{ .content | markdownify }}</div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </aside>
+    
+    <!-- 主内容区域 -->
+    <main class="content-main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    
+    <!-- 右侧栏 -->
+    <aside class="sidebar-right">
+      <!-- 搜索框 -->
+      <div class="search-section">
+        <h3>🔍 Search</h3>
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Search posts..." />
+          <div id="search-results"></div>
+        </div>
+      </div>
+      
+      <!-- 归档 -->
+      <div class="archives-section">
+        <h3 class="collapsible-header" onclick="toggleSection('archives-content')">
+          📁 Archives <span id="archives-toggle" class="toggle-icon">🔽</span>
+        </h3>
+        <div class="archives-list collapsible-content" id="archives-content">
+          {{ range site.Sections }}
+            {{ if eq .Section "posts" }}
+              {{ range .Pages.GroupByDate "2006" }}
+                <div class="archive-year">
+                  <a href="javascript:void(0);" data-year="{{ .Key }}">{{ .Key }}</a>
+                  <span class="count">({{ len .Pages }})</span>
+                </div>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+      
+      <!-- 会议/期刊标签云 -->
+      <div class="tags-section">
+        <h3 class="collapsible-header" onclick="toggleSection('venues-section')">
+          📄 Venues <span id="venues-toggle" class="toggle-icon">🔽</span>
+        </h3>
+        <div id="venues-section" class="tags-cloud collapsible-content">
+          {{ range site.Taxonomies.venue }}
+            <a href="javascript:void(0);" class="tag tag-venue sidebar-tag">{{ .Page.Title }}</a>
+          {{ end }}
+        </div>
+      </div>
+      
+      <!-- 关键词标签云 -->
+      <div class="tags-section">
+        <h3 class="collapsible-header" onclick="toggleSection('keywords-section')">
+          🔖 Keywords <span id="keywords-toggle" class="toggle-icon">🔽</span>
+        </h3>
+        <div id="keywords-section" class="tags-cloud collapsible-content">
+          {{ $allKeywords := slice }}
+          {{ range site.RegularPages }}
+            {{ if .Params.keywords }}
+              {{ range .Params.keywords }}
+                {{ $allKeywords = $allKeywords | append . }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ $uniqueKeywords := $allKeywords | uniq | sort }}
+          {{ range $uniqueKeywords }}
+            <a href="javascript:void(0);" class="tag tag-keyword sidebar-tag" data-keyword="{{ . }}">{{ . }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </aside>
+  </div>
+
+</body>
+</html>

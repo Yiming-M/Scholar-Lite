@@ -1,0 +1,26 @@
+{{/*
+Markdown风格的多列布局处理器
+这个shortcode会被自动调用来处理特殊的代码块语法
+*/}}
+
+{{- $lang := .Get 0 -}}
+{{- $content := .Get 1 -}}
+
+{{- if hasPrefix $lang "col-" -}}
+  {{- $colCount := strings.TrimPrefix $lang "col-" -}}
+  
+  {{- /* 使用分隔符分割列内容 */ -}}
+  {{- $separator := "```col\n" -}}
+  {{- $columns := split $content $separator -}}
+  
+  <div class="columns-{{ $colCount }}">
+    {{- range $columns -}}
+      {{- $trimmed := trim . "\n\r\t " -}}
+      {{- if $trimmed -}}
+        <div class="column">
+          {{ $trimmed | markdownify }}
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+{{- end -}}

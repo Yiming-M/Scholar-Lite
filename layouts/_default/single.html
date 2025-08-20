@@ -1,0 +1,31 @@
+{{ define "main" }}
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ .Title }}</h1>
+        <div class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            {{ with .Params.authors }}
+                <span class="authors">by {{ delimit . ", " " and " }}</span>
+            {{ end }}
+        </div>
+        
+        {{ with .Params.keywords }}
+            <div class="post-keywords">
+                {{ range . }}
+                    <span class="keyword">{{ . }}</span>
+                {{ end }}
+            </div>
+        {{ end }}
+        
+        {{ with .Params.venue }}
+            <div class="post-venue">
+                <span class="venue">{{ . }}</span>
+            </div>
+        {{ end }}
+    </header>
+    
+    <div class="post-content">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}
