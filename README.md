@@ -1,6 +1,10 @@
 # Scholar Lite Hugo Theme
 
+<a href="https://www.buymeacoffee.com/yiming.ma" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 A modern Hugo theme designed specifically for scholars to showcase their publications, featuring a clean and minimalistic interface. Built with a completely flat design, removing unnecessary pages like `about`, with each publication displayed in a collapsible manner on the homepage.
+
+![Light Mode](https://github.com/Yiming-M/Scholar-Lite/blob/main/images/light.png)
 
 ## ✨ Features
 
@@ -11,10 +15,12 @@ A modern Hugo theme designed specifically for scholars to showcase their publica
 
 ### 🎨 Modern Interface
 - **Responsive Design** - Perfect adaptation for desktop, tablet, and mobile
-- **Auto Dark Mode** - Support for automatic light/dark theme switching
 - **Animation Effects** - Smooth interactive animations
 - **Elegant Typography** - Professional academic content presentation
 - **Profile Photo** - Support for various avatar formats
+- **Auto Dark Mode** - Support for automatic light/dark theme switching
+
+![Dark Mode](https://github.com/Yiming-M/Scholar-Lite/blob/main/images/dark.png)
 
 ### 🔧 Technical Features
 - **Mathematical Formulas** - KaTeX support, perfect LaTeX formula rendering
