@@ -52,6 +52,12 @@ git submodule add https://github.com/yiming-m/Scholar-Lite.git themes/Scholar-Li
 cp themes/Scholar-Lite/exampleSite/hugo.toml .
 ```
 
+Edit `hugo.toml` to set your site title, base URL, and other parameters.
+- Put your profile photo in `static/images/profile.svg`. If `.jpg` or `.png` is used, ensure to update the `profilePhoto` parameter in `hugo.toml`.
+- Remove unnecessary social media links from the configuration.
+- Edit the `bio` parameter in `hugo.toml` to include a short introduction about yourself. You can use **markdown** formatting here.
+- Update the recent news.
+
 1. **Start the development server**
 ```bash
 hugo server -D
