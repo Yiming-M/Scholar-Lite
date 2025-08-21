@@ -1,6 +1,6 @@
 name = "Scholar-Lite"
 license = "MIT"
-licenselink = "LICENSE"
+licenselink = "https://github.com/Yiming-M/Scholar-Lite/blob/main/LICENSE"
 description = "A minimalistic theme for scholars to showcase their publications."
 
 # The home page of the theme, where the source can be found.
